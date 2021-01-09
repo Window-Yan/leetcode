@@ -1,17 +1,40 @@
 public class Main{
 	public static void main(String[] args){
 		// int[] nums = new int[]{1};
-		// System.out.println(nums.length+","+removeDuplicates(nums,6));//1,3,4,5,6,7
+
 		// for(int i=0;i<removeDuplicates(nums,6);i++){
 			// System.out.println(nums[i]);
 		// }
-		String h="";
-		String n="fessgd";
-		int index = strStr(h,n);
-		//System.out.println(h.substring(index,h.length()));
 		
-		System.out.println(index);
+		//System.out.println();
 	}
+	
+	/**
+	 * 20210109 leetcode 每日一题
+	 * 题目：
+	 * 	给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。
+	 *	如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
+	 *	你可以假设数组中无重复元素。
+	 */
+	public int searchInsert(int[] nums, int target) {
+		int ans = 0;
+		//遍历数组，寻找相同的位置
+		for(int i=0;i<nums.length;i++){
+			if(nums[i]==target){
+				ans = i;
+				return ans;
+			}else if(nums[i]<target){
+				continue;
+			}else{
+				ans = i-1;
+				return ans;
+			}
+		}return nums.length;//如果遍历完没有找到则应插入末尾
+    }
+	
+	/**
+	 * 20210109 之前的 leetcode 每日一题
+	 */
 	
 	public static int strStr(String haystack,String needle){
 		int ans=-1;

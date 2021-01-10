@@ -1,13 +1,60 @@
+import java.util.HashMap;
+
 public class Main{
 	public static void main(String[] args){
 		// int[] nums = new int[]{1};
-
+		int n = 6;
+		
 		// for(int i=0;i<removeDuplicates(nums,6);i++){
 			// System.out.println(nums[i]);
 		// }
 		
-		//System.out.println();
+		System.out.println(countAndSay(n));
 	}
+	
+	/**
+	 * 20210110 leetcode 每日一题
+	 * 题目：
+	 * 	给定一个正整数 n ，输出外观数列的第 n 项
+	 * 
+	 * 参数：int n
+	 * 返回值：String
+	 */
+	public static String countAndSay(int n) {
+		String ans = null;
+		StringBuilder sb= new StringBuilder();
+		HashMap<String,Integer> hm = new HashMap<String,Integer>(); //用于存放值和相应出现的数量
+		String s = null;
+		if(n==1){
+			return String.valueOf(n);
+		}else if(n>1){
+			s = countAndSay(n-1);
+		}
+		
+		//遍历s
+		for(int i=0; i<s.length(); i++){
+			String c = String.valueOf(s.charAt(i));
+			if(hm.containsKey(c)){
+				int num = hm.get(c);
+				hm.put(c,num+1);
+			}else{
+				sb.append(c);
+				if(hm.size()==1){
+					sb.insert(sb.length()-2,hm.get(String.valueOf(s.charAt(i-1))));	
+					hm.clear();
+				}			
+				hm.put(c,1);
+			}
+			if(i==s.length()-1){
+				sb.insert(sb.length()-1,hm.get(c));	
+				hm.clear();
+			}
+		}
+		
+		ans = sb.toString();
+		
+		return ans;
+    }
 	
 	/**
 	 * 20210109 leetcode 每日一题
@@ -35,7 +82,6 @@ public class Main{
 	/**
 	 * 20210109 之前的 leetcode 每日一题
 	 */
-	
 	public static int strStr(String haystack,String needle){
 		int ans=-1;
 		int h=haystack.length(),n=needle.length();

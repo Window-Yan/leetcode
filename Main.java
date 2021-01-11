@@ -15,20 +15,21 @@ public class Main{
 	/**
 	 * 20210111 leetcode 每日一题
 	 * 题目：
-	 * 	
+	 * 	给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
 	 * 
 	 * 参数：int[] nums
 	 * 返回值：int
 	 */
-	public static int findMax(int[] nums){
-		if(nums.length==1){
-			return nums[0];
-		}else{
-			int max = Math.max(sum(Arrays.copyOfRange(nums,0,nums.length-2),sum(Arrays.copyOfRange(nums,1,nums.length-1))));
-			int sumNums = sum(nums);
-			return max>sumNums?max:sumNums;
-		}
-	}
+	public static int maxSubArray(int[] nums) {
+		if (nums.length == 1) {
+            return nums[0];
+        } else {
+            int max = Math.max(maxSubArray(Arrays.copyOfRange(nums, 0, nums.length - 1)), maxSubArray(Arrays.copyOfRange(nums, 1, nums.length)));
+            int sumNums = sum(nums);
+//            System.out.println(max + "max:");
+            return Math.max(max, sumNums);
+        }
+    }
 	
 	/**
 	 * 数组求和

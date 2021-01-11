@@ -1,15 +1,47 @@
 import java.util.HashMap;
+import java.util.Arrays;
 
 public class Main{
 	public static void main(String[] args){
-		// int[] nums = new int[]{1};
-		int n = 6;
+		int[] nums = new int[]{1-2,1,-3,4,-1,2,1,-5,4};
 		
 		// for(int i=0;i<removeDuplicates(nums,6);i++){
 			// System.out.println(nums[i]);
 		// }
 		
-		System.out.println(countAndSay(n));
+		System.out.println(findMax(nums));
+	}
+	
+	/**
+	 * 20210111 leetcode 每日一题
+	 * 题目：
+	 * 	
+	 * 
+	 * 参数：int[] nums
+	 * 返回值：int
+	 */
+	public static int findMax(int[] nums){
+		if(nums.length==1){
+			return nums[0];
+		}else{
+			int max = Math.max(sum(Arrays.copyOfRange(nums,0,nums.length-2),sum(Arrays.copyOfRange(nums,1,nums.length-1))));
+			int sumNums = sum(nums);
+			return max>sumNums?max:sumNums;
+		}
+	}
+	
+	/**
+	 * 数组求和
+	 * 
+	 * 参数：int[] nums
+	 * 返回值：int
+	 */
+	public static int sum(int[] nums){
+		int sum=0;
+		for(int i:nums){
+			sum+=i;
+		}
+		return sum;
 	}
 	
 	/**

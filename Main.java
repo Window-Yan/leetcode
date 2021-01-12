@@ -3,13 +3,46 @@ import java.util.Arrays;
 
 public class Main{
 	public static void main(String[] args){
-		int[] nums = new int[]{1-2,1,-3,4,-1,2,1,-5,4};
+		int[] nums = new int[]{0,1};
 		
 		// for(int i=0;i<removeDuplicates(nums,6);i++){
 			// System.out.println(nums[i]);
 		// }
 		
-		System.out.println(findMax(nums));
+		
+		System.out.println(Arrays.toString(arrayAddOne(nums)));
+	}
+	
+	/**
+	 * 20210112 leetcode 每日一题
+	 * 题目：
+	 * 	
+	 * 
+	 * 参数：int[] nums
+	 * 返回值：int[] nums
+	 */
+	public static int[] arrayAddOne(int[] nums){
+		int q=0;//q是商
+		int len = nums.length;
+		nums[len-1]+=1;
+		q=nums[len-1]/10;
+		if(q>0){
+			int r=nums[len-1]%10;
+			if(len==1){
+				nums = new int[2];
+				nums[1]=r;
+				nums[0]=q;				
+			}else{
+				int[] ans=arrayAddOne(Arrays.copyOfRange(nums,0,len-1));
+				nums = new int[ans.length+1];
+				for(int i=0;i<ans.length;i++){
+					nums[i]=ans[i];
+				}
+				nums[ans.length]=r;
+			}			
+			return nums;
+		}
+		return nums;
 	}
 	
 	/**

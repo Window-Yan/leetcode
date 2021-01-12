@@ -1,15 +1,81 @@
 import java.util.HashMap;
+import java.util.Arrays;
 
 public class Main{
 	public static void main(String[] args){
-		// int[] nums = new int[]{1};
-		int n = 6;
+		int[] nums = new int[]{0,1};
 		
 		// for(int i=0;i<removeDuplicates(nums,6);i++){
 			// System.out.println(nums[i]);
 		// }
 		
-		System.out.println(countAndSay(n));
+		
+		System.out.println(Arrays.toString(arrayAddOne(nums)));
+	}
+	
+	/**
+	 * 20210112 leetcode 每日一题
+	 * 题目：
+	 * 	
+	 * 
+	 * 参数：int[] nums
+	 * 返回值：int[] nums
+	 */
+	public static int[] arrayAddOne(int[] nums){
+		int q=0;//q是商
+		int len = nums.length;
+		nums[len-1]+=1;
+		q=nums[len-1]/10;
+		if(q>0){
+			int r=nums[len-1]%10;
+			if(len==1){
+				nums = new int[2];
+				nums[1]=r;
+				nums[0]=q;				
+			}else{
+				int[] ans=arrayAddOne(Arrays.copyOfRange(nums,0,len-1));
+				nums = new int[ans.length+1];
+				for(int i=0;i<ans.length;i++){
+					nums[i]=ans[i];
+				}
+				nums[ans.length]=r;
+			}			
+			return nums;
+		}
+		return nums;
+	}
+	
+	/**
+	 * 20210111 leetcode 每日一题
+	 * 题目：
+	 * 	给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+	 * 
+	 * 参数：int[] nums
+	 * 返回值：int
+	 */
+	public static int maxSubArray(int[] nums) {
+		if (nums.length == 1) {
+            return nums[0];
+        } else {
+            int max = Math.max(maxSubArray(Arrays.copyOfRange(nums, 0, nums.length - 1)), maxSubArray(Arrays.copyOfRange(nums, 1, nums.length)));
+            int sumNums = sum(nums);
+//            System.out.println(max + "max:");
+            return Math.max(max, sumNums);
+        }
+    }
+	
+	/**
+	 * 数组求和
+	 * 
+	 * 参数：int[] nums
+	 * 返回值：int
+	 */
+	public static int sum(int[] nums){
+		int sum=0;
+		for(int i:nums){
+			sum+=i;
+		}
+		return sum;
 	}
 	
 	/**

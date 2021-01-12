@@ -14,35 +14,50 @@ public class Main{
 	}
 	
 	/**
+	 * 20210113 leetcode 每日一题
+	 * 题目：
+	 * 	给你两个二进制字符串，返回它们的和（用二进制表示）。
+     *	输入为 非空 字符串且只包含数字 1 和 0
+	 * 
+	 * 参数：int[] digits
+	 * 返回值：int[]
+	 */
+	public static String addBinary(String a, String b) {
+
+    }
+	
+	/**
 	 * 20210112 leetcode 每日一题
 	 * 题目：
-	 * 	
+	 * 	给定一个由 整数 组成的 非空 数组所表示的非负整数，在该数的基础上加一。
+     *	最高位数字存放在数组的首位， 数组中每个元素只存储单个数字。
+	 *	你可以假设除了整数 0 之外，这个整数不会以零开头。
 	 * 
-	 * 参数：int[] nums
-	 * 返回值：int[] nums
+	 * 参数：int[] digits
+	 * 返回值：int[]
 	 */
-	public static int[] arrayAddOne(int[] nums){
+	public static int[] plusOne(int[] digits){
 		int q=0;//q是商
-		int len = nums.length;
-		nums[len-1]+=1;
-		q=nums[len-1]/10;
+		int len = digits.length;
+		digits[len-1]+=1;
+		q=digits[len-1]/10;
 		if(q>0){
-			int r=nums[len-1]%10;
+			int r=digits[len-1]%10;
 			if(len==1){
-				nums = new int[2];
-				nums[1]=r;
-				nums[0]=q;				
+				digits = new int[2];
+				digits[1]=r;
+				digits[0]=q;				
 			}else{
-				int[] ans=arrayAddOne(Arrays.copyOfRange(nums,0,len-1));
-				nums = new int[ans.length+1];
+				int[] ans=plusOne(Arrays.copyOfRange(digits,0,len-1));
+				digits = new int[ans.length+1];
 				for(int i=0;i<ans.length;i++){
-					nums[i]=ans[i];
+					digits[i]=ans[i];
 				}
-				nums[ans.length]=r;
+				digits[ans.length]=r;
 			}			
-			return nums;
+			return digits;
 		}
-		return nums;
+		return digits;
 	}
 	
 	/**

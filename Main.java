@@ -3,14 +3,15 @@ import java.util.Arrays;
 
 public class Main{
 	public static void main(String[] args){
-		int[] nums = new int[]{0,1};
+		//int[] nums = new int[]{0,1};
 		
 		// for(int i=0;i<removeDuplicates(nums,6);i++){
 			// System.out.println(nums[i]);
 		// }
+		String a = new String("10010");
+		String b = new String("11111");
 		
-		
-		System.out.println(Arrays.toString(arrayAddOne(nums)));
+		System.out.println(addBinary(a,b));
 	}
 	
 	/**
@@ -19,11 +20,32 @@ public class Main{
 	 * 	给你两个二进制字符串，返回它们的和（用二进制表示）。
      *	输入为 非空 字符串且只包含数字 1 和 0
 	 * 
-	 * 参数：int[] digits
-	 * 返回值：int[]
+	 * 参数：String a, String b
+	 * 返回值：String
 	 */
 	public static String addBinary(String a, String b) {
-
+		String ans = "";
+		int len = Math.max(a.length(),b.length());
+		int i=1;
+		int q = 0;
+		int r =0;
+		int sum = 0;
+		String s = a.length()>b.length()?a:b;
+		while(i<=len){
+			if(i<=Math.min(a.length(),b.length())){
+				sum = (a.charAt(len-i)) + (b.charAt(len-i)) + q - 48*2;
+				q = sum/2;
+				ans = sum%2 + ans;
+			}else{
+				sum = Integer.valueOf(s.charAt(len-i)) + q - 48;
+				q = sum/2;
+				ans = sum%2 + ans;
+			}if(i==len){
+				ans = q + ans;
+			}i++;		
+		}
+		return ans;
+		
     }
 	
 	/**

@@ -15,6 +15,20 @@ public class Main{
 	}
 	
 	/**
+	 * 20210114 leetcode 每日一题
+	 * 题目：
+	 * 	实现?int sqrt(int x)?函数。
+	 *	计算并返回?x?的平方根，其中?x 是非负整数。
+	 *	由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。
+	 * 
+	 * 参数：int x
+	 * 返回值：int
+	 */
+	public int mySqrt(int x) {
+
+    }
+	
+	/**
 	 * 20210113 leetcode 每日一题
 	 * 题目：
 	 * 	给你两个二进制字符串，返回它们的和（用二进制表示）。
@@ -33,7 +47,7 @@ public class Main{
 		String s = a.length()>b.length()?a:b;
 		while(i<=len){
 			if(i<=Math.min(a.length(),b.length())){
-				sum = (a.charAt(len-i)) + (b.charAt(len-i)) + q - 48*2;
+				sum = (a.charAt(a.length()-i)) + (b.charAt(b.length()-i)) + q - 48*2;
 				q = sum/2;
 				ans = sum%2 + ans;
 			}else{
@@ -41,7 +55,10 @@ public class Main{
 				q = sum/2;
 				ans = sum%2 + ans;
 			}if(i==len){
-				ans = q + ans;
+                if(q>0){
+                    ans = q + ans;
+                }
+				
 			}i++;		
 		}
 		return ans;

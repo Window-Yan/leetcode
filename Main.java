@@ -29,14 +29,18 @@ public class Main{
 	 * 返回值：int
 	 */
 	public static int mySqrt(int x) {
-		int i = x/2;
+		long i = x/2; //注意此处如果定义为int则会出现i*i超出int范围造成运算错误
 		while(i*i>x){
-			i/=2;
+			i=i/2;
+			System.out.println(i);
 		}
 		while(i*i<x){
 			i+=1;
+			System.out.println(i);
 		}
-		return i*i==x?i:i-1;
+        int ans=(int)i;
+		return ans*ans==x?ans:ans-1;
+	
     }
 	
 	/**

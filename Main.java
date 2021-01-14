@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main{
 	public static void main(String[] args){
@@ -8,24 +9,34 @@ public class Main{
 		// for(int i=0;i<removeDuplicates(nums,6);i++){
 			// System.out.println(nums[i]);
 		// }
+		Scanner sc = new Scanner(System.in);
+		System.out.println("请输入：");
+		String s = sc.nextLine();
 		String a = new String("10010");
 		String b = new String("11111");
 		
-		System.out.println(addBinary(a,b));
+		System.out.println(mySqrt(Integer.parseInt(s)));
 	}
 	
 	/**
 	 * 20210114 leetcode 每日一题
 	 * 题目：
-	 * 	实现?int sqrt(int x)?函数。
-	 *	计算并返回?x?的平方根，其中?x 是非负整数。
+	 * 	实现int sqrt(int x)?函数。
+	 *	计算并返回x的平方根，其中x是非负整数。
 	 *	由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。
 	 * 
 	 * 参数：int x
 	 * 返回值：int
 	 */
-	public int mySqrt(int x) {
-
+	public static int mySqrt(int x) {
+		int i = x/2;
+		while(i*i>x){
+			i/=2;
+		}
+		while(i*i<x){
+			i+=1;
+		}
+		return i*i==x?i:i-1;
     }
 	
 	/**

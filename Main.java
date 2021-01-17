@@ -19,6 +19,70 @@ public class Main{
 	}
 	
 	/**
+	 * 20210118 leetcode 每日一题
+	 * 题目：
+	 * 	给你两个有序整数数组?nums1 和 nums2，请你将 nums2 合并到?nums1?中，使 nums1 成为一个有序数组。
+	 *  初始化?nums1 和 nums2 的元素数量分别为?m 和 n 。你可以假设?nums1?有足够的空间（空间大小等于?m + n）来保存 nums2 中的元素。
+	 *
+	 * 参数：int[] nums1, int m, int[] nums2, int n
+	 * 返回值：null
+	 */
+	public static void merge(int[] nums1, int m, int[] nums2, int n) {
+
+    }
+	
+	/**
+	 * 20210117 leetcode 每日一题
+	 * 题目：
+	 * 	给定一个排序链表，删除所有重复的元素，使得每个元素只出现一次。
+	 * 
+	 * 参数：ListNode head
+	 * 返回值：ListNode
+	 */
+	public static ListNode deleteDuplicates(ListNode head) {
+		if(head==null || head.next==null){
+			return head;
+		}
+		ListNode before = head;
+		ListNode l = head.next;
+		do{	
+			int a = before.val;
+			int b = l.val;
+			if(a==b){
+				if(l.next==null){
+                    before.next=null;
+					return head;
+				}else{
+					before.next=l.next;
+					l=l.next;
+				}
+			}else{
+				before=l;
+				l=l.next;
+			}
+		}while(l!=null);
+		
+		return head;
+    }
+	//注意清楚野指针
+	/* class Solution {
+		public ListNode deleteDuplicates(ListNode head) {
+			ListNode cur = head;
+			while(cur != null && cur.next != null){
+				if(cur.val == cur.next.val){
+					ListNode node = cur.next; 
+					cur.next = node.next;
+					node.next = null;//清除野指针
+				}else{
+					cur = cur.next;          
+				}
+				
+			}
+			return head;
+		}
+	} */
+	
+	/**
 	 * 20210114 leetcode 每日一题
 	 * 题目：
 	 * 	实现int sqrt(int x)?函数。
@@ -244,6 +308,7 @@ public class Main{
 	}
 	
 	public static int removeDuplicates(int[] nums, int val){
+	
 		int ans = nums.length; //ans当作右指针使用
 		if(nums.length<1){
 			return nums.length;
@@ -264,6 +329,17 @@ public class Main{
 		}
 		return ans;
 
+	}
+	
+	/**
+	 * Definition for singly-linked list.
+	 */
+	public class ListNode {
+	  int val;
+	  ListNode next;
+	  ListNode() {}
+	  ListNode(int val) { this.val = val; }
+	  ListNode(int val, ListNode next) { this.val = val; this.next = next; }
 	}
 }
 

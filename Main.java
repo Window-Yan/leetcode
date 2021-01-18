@@ -18,6 +18,32 @@ public class Main{
 		System.out.println(mySqrt(Integer.parseInt(s)));
 	}
 	
+	/* 	
+		20210118 leetcode 每日一题
+		题目：
+			给定两个二叉树，编写一个函数来检验它们是否相同。
+			如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
+		
+		Definition for a binary tree node.
+		public class TreeNode {
+			int val;
+			TreeNode left;
+			TreeNode right;
+			TreeNode() {}
+			TreeNode(int val) { this.val = val; }
+			TreeNode(int val, TreeNode left, TreeNode right) {
+				this.val = val;
+				this.left = left;
+				this.right = right;
+			}
+		}
+	*/
+	public static boolean isSameTree(TreeNode p, TreeNode q) {
+
+    }
+	
+	
+	
 	/**
 	 * 20210118 leetcode 每日一题
 	 * 题目：
@@ -28,7 +54,30 @@ public class Main{
 	 * 返回值：null
 	 */
 	public static void merge(int[] nums1, int m, int[] nums2, int n) {
-
+		HashMap<Integer,Integer> hs = new HashMap<Integer,Integer>();
+        int index=0;
+        for(int i=0,j=0;i<m || j<n;i++){
+            if(i>=m || j>=n){
+                if(i>m-1){
+                    hs.put(index,nums2[j]);
+                    j++;
+                }else if(j>n-1){
+                    hs.put(index,nums1[i]);                   
+                }
+            }else{
+                if(nums1[i]<=nums2[j]){
+                    hs.put(index,nums1[i]);
+                }else{
+                    hs.put(index,nums2[j]);
+                    j++;
+                    i--;                                 
+                }
+            }
+            index++;           
+        }
+        for(int i=0;i<m+n;i++){
+            nums1[i]=hs.get(i);
+        }
     }
 	
 	/**

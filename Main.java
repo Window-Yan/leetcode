@@ -19,7 +19,16 @@ public class Main{
 	}
 	
 	/* 	
-		20210118 leetcode 每日一题
+		20210120 leetcode 每日一题
+		题目：
+			给定一个二叉树，检查它是否是镜像对称的
+	*/
+	public static boolean isSymmetric(TreeNode root) {
+
+    }
+	
+	/* 	
+		20210119 leetcode 每日一题
 		题目：
 			给定两个二叉树，编写一个函数来检验它们是否相同。
 			如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
@@ -39,11 +48,27 @@ public class Main{
 		}
 	*/
 	public static boolean isSameTree(TreeNode p, TreeNode q) {
-
+		boolean l=false;//记录左孩子是否相等
+        boolean r=false;//记录右孩子是否相等
+        if(p==null || q==null){
+            return p==null && q==null;
+        }
+		//如果左子树不为空，递归判断左子树；如果左子树都为空，则判断为相等
+        if(p.left!=null && q.left!=null){
+            l= isSameTree(p.left,q.left);
+        }else if(p.left==null && q.left==null){
+            l=true;
+        }
+		//如果右子树不为空，递归判断右子树；如果右子树都为空，则判断为相等
+		if(p.right!=null && q.right!=null){
+            r = isSameTree(p.right,q.right);
+        }else if(p.right==null && q.right==null){
+            r=true;
+        }
+		//返回判断结果
+        return p.val==q.val && l && r;
     }
-	
-	
-	
+		
 	/**
 	 * 20210118 leetcode 每日一题
 	 * 题目：

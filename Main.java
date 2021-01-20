@@ -24,8 +24,19 @@ public class Main{
 			给定一个二叉树，检查它是否是镜像对称的
 	*/
 	public static boolean isSymmetric(TreeNode root) {
-
+		int key=0;
+		HashSet<Integer,Integer> hs = new HashSet<Integer,Integer>();
+		addId(hs,root,key);
+		//比较
     }
+	public static void addId(HashSet<Integer,Integer> hs, TreeNode root,key){
+		if(root==null || (root.left==null && root.right==null)){
+			hs.put(k,root.val);
+		}else{
+			addId(hs,root.left,k*2+1);
+			addId(hs,root.right,k*2+2);
+		}
+	}
 	
 	/* 	
 		20210119 leetcode 每日一题

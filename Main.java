@@ -24,18 +24,52 @@ public class Main{
 			给定一个二叉树，检查它是否是镜像对称的
 	*/
 	public static boolean isSymmetric(TreeNode root) {
-		int key=0;
-		HashSet<Integer,Integer> hs = new HashSet<Integer,Integer>();
+		if(root==null){
+            return true;
+        }
+        int key=1;
+		HashMap<Integer,Integer> hs = new HashMap<Integer,Integer>();
 		addId(hs,root,key);
+        TreeSet<Integer> ts = new TreeSet<Integer>(hs.keySet());
+        int high=(int)(Math.log(ts.last())/Math.log(2))+1;
+		
 		//比较
+		for(int i=1;i<high;i++){
+			if(!compare(hs,(int)Math.pow(2,i),(int)(Math.pow(2,i+1)-1))){
+				return false;
+			}
+		}
+		return true;
+		
     }
 	public static void addId(HashSet<Integer,Integer> hs, TreeNode root,key){
-		if(root==null || (root.left==null && root.right==null)){
+		if(root.left!=null && root.right!=null){
+            hs.put(k,root.val);
+            addId(hs,root.left,k*2);
+			addId(hs,root.right,k*2+1);
+        }else if((root.left==null && root.right!=null) || (root.left!=null && root.right==null)){
 			hs.put(k,root.val);
+            if(root.left!=null){
+                addId(hs,root.left,k*2);
+            }else{
+                hs.put(k*2,null);
+            }
+            if(root.right!=null){
+                addId(hs,root.right,k*2+1);
+            }else{
+                hs.put(k*2+1,null);
+            }
 		}else{
-			addId(hs,root.left,k*2+1);
-			addId(hs,root.right,k*2+2);
+            hs.put(k,root.val);
+        }    
+	}
+	public static boolean compare(HashSet<Integer,Integer> hs,int start,int end){
+		for(int i=0;i<=(end-start)/2;i++){
+			if(hs.get(start+i) != hs.get(end-i)){
+				return false;
+			}
 		}
+		return true;
 	}
 	
 	/* 	
@@ -425,6 +459,19 @@ public class Main{
 	  ListNode() {}
 	  ListNode(int val) { this.val = val; }
 	  ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+	}
+	
+	public class TreeNode {
+		int val;
+		TreeNode left;
+		TreeNode right;
+		TreeNode() {}
+		TreeNode(int val) { this.val = val; }
+		TreeNode(int val, TreeNode left, TreeNode right) {
+			this.val = val;
+			this.left = left;
+			this.right = right;
+		}
 	}
 }
 
